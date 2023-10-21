@@ -65,7 +65,7 @@
 
 # 使用说明
 
-下载windows-x86.zip，并解压
+下载alter_by_hex.exe
 
 拷贝安装过的整个python环境到你的项目中
 
