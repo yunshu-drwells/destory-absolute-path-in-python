@@ -1,5 +1,8 @@
 # destory-absolute-path-in-python
 
+# 视频教程
+
+<a href="https://www.bilibili.com/video/BV1m34y1M7cK/?share_source=copy_web&vd_source=f484d7a40d011dba21c5a56e3063c0f2">将Python环境装进u盘</a>
 
 # 项目初衷
 
