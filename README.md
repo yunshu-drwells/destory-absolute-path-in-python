@@ -1,0 +1,1 @@
+# destory-absolute-path-in-python
