@@ -2,12 +2,34 @@ import os
 import re
 import glob
 
+
+def find(file_name):
+    parten = r'pip(.*).exe'
+    res = re.search(parten, file_name)
+    if res:
+        # print("res:", res.group(0))
+        return True
+    return False
+
+
 def search_all_executable(cur_path):
-    print("current path:", cur_path)
-    # 搜索所有.exe文件
-    files = glob.glob(cur_path+"/*.exe")
-    return files
-    
+    files_list = []
+    # 指定要搜索的路径
+    search_path = cur_path
+    # 使用os模块遍历指定路径下的文件
+    for root, dirs, files in os.walk(search_path):
+        for f in files:
+            if find(f):
+                files_list.append(cur_path+"/"+f)
+                # pip_path = os.path.join(root)
+                # print(f'Found {f} at: {pip_path}')
+    return files_list
+    # print("current path:", cur_path)
+    # # 搜索所有.exe文件
+    # files = glob.glob(cur_path+"/*.exe")
+    # return files
+
+
 # 定义一个函数，接受一个文件名作为参数，读取文件后返回十六进制内容
 def read_binary_file(filename):
     # 以二进制模式打开文件
@@ -39,11 +61,13 @@ def write_binary_file(filename, text):
         f.write(bin_bytes)
     # 打印提示信息
     print("alter ", filename, " down!")
-   
+
+
 # 正则替换
 def re_replace(match):
     return match.group().replace(match.group(1), "")
-    
+
+
 def re_match_alter(text):
     # 定义一个正则表达式，匹配#!"f:\python3.9.0\python\python39\python.exe字符串
 	# 22:" 65:e 78:x
@@ -77,12 +101,12 @@ def re_match_alter(text):
         # print(result)
         return result
     return ""
-
         
 
 if __name__ == '__main__':
     cur_path = os.getcwd()
     files = search_all_executable(cur_path)
+    print(files)
     for file in files:
         print("processing: ", file)
         # 以ascii编码方式打开.exe文件并返回内容
